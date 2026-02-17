@@ -1,0 +1,75 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Plaćenje narudžbe</ui:define>
+
+	<ui:define name="content">
+		<h2>Plaćenje narudžbe</h2>
+		<br />
+		<h:panelGrid columns="2" columnClasses="left,right"
+			styleClass="table-blocks">
+
+			<h:panelGroup>
+				<h3>Naručena jela</h3>
+				<h:dataTable value="#{pracenjeNarudzbi.narucenaJela}" var="jelo"
+					border="1">
+					<h:column>
+						<f:facet name="header">Naziv</f:facet>
+						#{pregledJelovnika.getNaziv(jelo.id())}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Količina</f:facet>
+						#{jelo.kolicina()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cijena</f:facet>
+						#{jelo.cijena()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Iznos</f:facet>
+						#{jelo.kolicina() * jelo.cijena()}
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+
+			<h:panelGroup>
+				<h3>Naručena pića</h3>
+				<h:dataTable value="#{pracenjeNarudzbi.narucenaPica}" var="pice"
+					border="1">
+					<h:column>
+						<f:facet name="header">Naziv</f:facet>
+						#{pregledKartePica.getNaziv(pice.id())}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Količina</f:facet>
+						#{pice.kolicina()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cijena</f:facet>
+						#{pice.cijena()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Iznos</f:facet>
+						#{pice.kolicina() * pice.cijena()}
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+		</h:panelGrid>
+		
+		
+		<h:form id="placanjeForm">
+			<h:panelGrid columns="1" styleClass="form-container"
+				style="margin-bottom: 30px;">
+
+				<h:panelGroup>
+					<h:commandButton value="Plati narudžbu"
+						action="#{pracenjeNarudzbi.platiNarudzbu}" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+		<h:outputText value="#{pracenjeNarudzbi.statusPoruka}"
+			style="display:block; margin-top:10px;" />
+	</ui:define>
+
+</ui:composition>

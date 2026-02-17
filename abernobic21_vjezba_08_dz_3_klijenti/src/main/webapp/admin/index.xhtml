@@ -1,0 +1,36 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Zadaća 3 - Početak Partner</ui:define>
+	<ui:define name="content">
+		<ul>
+			<ui:fragment>
+				<li><h:link outcome="/admin/spavanjePartner.xhtml"
+						value="Spavanje partnera" /></li>
+			</ui:fragment>
+			<ui:fragment>
+				<li><h:link outcome="/admin/pregledKorisnika.xhtml"
+						value="Pregled korisnika s pretraživanjem po imenu i prezimenu" /></li>
+			</ui:fragment>
+			<ui:fragment>
+				<li><h:link outcome="/admin/pregledSvihKorisnika.xhtml"
+						value="Pregled svih korisnika" /></li>
+			</ui:fragment>
+			<ui:fragment>
+				<li><h:link outcome="/admin/pregledObracuna.xhtml"
+						value="Pregled obračuna" /></li>
+			</ui:fragment>
+			<ui:fragment>
+				<li><h:link outcome="/admin/pregledRada.xhtml"
+						value="Pregled rada" /></li>
+			</ui:fragment>
+			<ui:fragment>
+				<li><h:link outcome="/admin/nadzornaKonzolaPartnera.xhtml"
+						value="Nadzorna konzola partnera/restorana" /></li>
+			</ui:fragment>
+		</ul>
+	</ui:define>
+	<ui:define name="nav">
+	</ui:define>
+</ui:composition>

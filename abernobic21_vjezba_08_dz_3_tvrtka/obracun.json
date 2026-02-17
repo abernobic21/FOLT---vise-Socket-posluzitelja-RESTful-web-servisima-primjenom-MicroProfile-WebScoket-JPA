@@ -1,0 +1,66 @@
+[
+  {
+    "partner": 7,
+    "id": "p1",
+    "jelo": false,
+    "kolicina": 0.7,
+    "cijena": 3.0,
+    "vrijeme": 1712578800000
+  },
+  {
+    "partner": 7,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 1.0,
+    "cijena": 10.0,
+    "vrijeme": 1712579900000
+  },
+  {
+    "partner": 100,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 2.0,
+    "cijena": 10.0,
+    "vrijeme": 1744533198683
+  },
+  {
+    "partner": 1,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 1.0,
+    "cijena": 10.0,
+    "vrijeme": 1712579900000
+  },
+  {
+    "partner": 1,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 1.0,
+    "cijena": 10.0,
+    "vrijeme": 1712579900000
+  },
+  {
+    "partner": 100,
+    "id": "p1",
+    "jelo": false,
+    "kolicina": 1.0,
+    "cijena": 3.0,
+    "vrijeme": 1744883323451
+  },
+  {
+    "partner": 100,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 1.0,
+    "cijena": 10.0,
+    "vrijeme": 1744883323452
+  },
+  {
+    "partner": 100,
+    "id": "MK1",
+    "jelo": true,
+    "kolicina": 123.0,
+    "cijena": 10.0,
+    "vrijeme": 1744883391117
+  }
+]

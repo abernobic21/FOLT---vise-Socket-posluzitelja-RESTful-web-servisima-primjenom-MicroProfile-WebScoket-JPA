@@ -1,0 +1,56 @@
+version: '3'
+
+name: abernobic21_docker_compose
+
+volumes:
+  svezak_abernobic21:
+    external: true
+
+
+networks:
+  mreza_abernobic21:
+    external: true
+
+services:
+  tvrtka:
+    build:
+      dockerfile: ./abernobic21_vjezba_08_dz_3_tvrtka/Dockerfile
+    container_name: tvrtka
+    hostname: tvrtka_abernobic21
+    networks:
+      mreza_abernobic21:
+        ipv4_address: 20.24.5.2
+    volumes:
+      - type: volume
+        source: svezak_abernobic21
+        target: /usr/app/podaci
+        volume:
+          nocopy: true
+    working_dir: /usr/app/podaci
+
+  partner:
+    build:
+      dockerfile: ./abernobic21_vjezba_08_dz_3_partner/Dockerfile
+    container_name: partner
+    hostname: partner_abernobic21
+    networks:
+      mreza_abernobic21:
+        ipv4_address: 20.24.5.3
+    volumes:
+      - type: volume
+        source: svezak_abernobic21
+        target: /usr/app/podaci
+        volume:
+          nocopy: true
+    working_dir: /usr/app/podaci
+    depends_on:
+      - tvrtka  
+    
+  servis:
+    build:
+      dockerfile: ./abernobic21_vjezba_08_dz_3_servisi/Dockerfile
+    container_name: servis
+    hostname: servisi_abernobic21
+    networks:
+      mreza_abernobic21:
+        ipv4_address: 20.24.5.20

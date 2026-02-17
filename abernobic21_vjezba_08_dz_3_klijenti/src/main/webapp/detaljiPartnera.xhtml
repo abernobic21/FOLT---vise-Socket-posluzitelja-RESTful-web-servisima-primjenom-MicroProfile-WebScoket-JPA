@@ -1,0 +1,47 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Detalji partnera</ui:define>
+
+	<ui:define name="content">
+		<h2>Detalji partnera</h2>
+		<br />
+
+		<h:panelGrid columns="2"
+			rendered="#{not empty detaljiPartnera.partner}">
+			<h:outputText value="ID:" />
+			<h:outputText value="#{detaljiPartnera.partner.id()}" />
+
+			<h:outputText value="Naziv:" />
+			<h:outputText value="#{detaljiPartnera.partner.naziv()}" />
+
+			<h:outputText value="Adresa:" />
+			<h:outputText value="#{detaljiPartnera.partner.adresa()}" />
+
+			<h:outputText value="Mrežna vrata" />
+			<h:outputText value="#{detaljiPartnera.partner.mreznaVrata()}" />
+
+			<h:outputText value="Mrežna vrata kraj" />
+			<h:outputText value="#{detaljiPartnera.partner.mreznaVrataKraj()}" />
+
+			<h:outputText value="Vrsta kuhinje:" />
+			<h:outputText value="#{detaljiPartnera.partner.vrstaKuhinje()}" />
+
+			<h:outputText value="GPS širina:" />
+			<h:outputText value="#{detaljiPartnera.partner.gpsSirina()}" />
+
+			<h:outputText value="GPS dužina:" />
+			<h:outputText value="#{detaljiPartnera.partner.gpsDuzina()}" />
+
+			<h:outputText value="Sigurnosni kod:" />
+			<h:outputText value="#{detaljiPartnera.partner.sigurnosniKod()}" />
+
+			<h:outputText value="Admin kod:" />
+			<h:outputText value="#{detaljiPartnera.partner.adminKod()}" />
+		</h:panelGrid>
+
+		<h:outputText value="Partner nije pronađen."
+			rendered="#{empty detaljiPartnera.partner}" />
+	</ui:define>
+</ui:composition>

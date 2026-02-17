@@ -1,0 +1,36 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Pregled jelovnika</ui:define>
+
+	<ui:define name="content">
+		<h2>Jelovnik</h2>
+		<br />
+
+		<h:dataTable value="#{pregledJelovnika.jelovnik}" var="jelo"
+			border="1" cellpadding="5">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+        #{jelo.id()}
+      </h:column>
+
+			<h:column>
+				<f:facet name="header">Naziv</f:facet>
+        #{jelo.naziv()}
+      </h:column>
+
+			<h:column>
+				<f:facet name="header">Cijena (€)</f:facet>
+        #{jelo.cijena()}
+      </h:column>
+		</h:dataTable>
+
+		<h:panelGroup rendered="#{not empty pregledJelovnika.statusPoruka}">
+			<h:outputText value="#{pregledJelovnika.statusPoruka}"
+				style="color: red; font-weight: bold;" />
+			<br />
+			<br />
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

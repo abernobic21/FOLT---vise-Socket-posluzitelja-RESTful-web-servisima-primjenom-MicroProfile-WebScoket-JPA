@@ -1,0 +1,123 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Nova narudžba</ui:define>
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:viewAction action="#{pracenjeNarudzbi.otvoriNarudzbu}" />
+		</f:metadata>
+
+		<h2>Nova narudžba</h2>
+		<br />
+
+		<h:form id="platiForm">
+			<h:commandButton value="Plati narudžbu"
+				action="#{pracenjeNarudzbi.platiNarudzbu}" />
+		</h:form>
+
+		<br />
+
+		<h:form id="jeloForm">
+			<h:panelGrid columns="2" styleClass="form-container">
+				<h:outputLabel for="jeloSelect" value="Odaberi jelo:" />
+				<h:selectOneMenu id="jeloSelect"
+					value="#{pracenjeNarudzbi.odabranoJelo}">
+					<f:selectItems value="#{pregledJelovnika.jelovnik}" var="jelo"
+						itemLabel="#{jelo.naziv()}" itemValue="#{jelo.id()}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel for="kolicinaJelo" value="Količina:" />
+				<h:inputText id="kolicinaJelo"
+					value="#{pracenjeNarudzbi.kolicinaJelo}">
+					<f:validateLongRange minimum="1" maximum="100" />
+				</h:inputText>
+
+				<h:outputText />
+				<h:commandButton value="Naruči jelo"
+					action="#{pracenjeNarudzbi.naruciJelo}" />
+			</h:panelGrid>
+		</h:form>
+
+		<br />
+
+		<h:form id="piceForm">
+			<h:panelGrid columns="2" styleClass="form-container">
+				<h:outputLabel for="piceSelect" value="Odaberi piće:" />
+				<h:selectOneMenu id="piceSelect"
+					value="#{pracenjeNarudzbi.odabranoPice}">
+					<f:selectItems value="#{pregledKartePica.kartaPica}" var="pice"
+						itemLabel="#{pice.naziv()}" itemValue="#{pice.id()}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel for="kolicinaPice" value="Količina:" />
+				<h:inputText id="kolicinaPice"
+					value="#{pracenjeNarudzbi.kolicinaPice}">
+					<f:validateLongRange minimum="1" maximum="100" />
+				</h:inputText>
+
+				<h:outputText />
+				<h:commandButton value="Naruči piće"
+					action="#{pracenjeNarudzbi.naruciPice}" />
+			</h:panelGrid>
+		</h:form>
+
+		<br />
+		<br />
+
+		<h:panelGrid columns="2" columnClasses="left,right"
+			styleClass="table-blocks">
+
+			<h:panelGroup>
+				<h3>Naručena jela</h3>
+				<h:dataTable value="#{pracenjeNarudzbi.narucenaJela}" var="jelo"
+					border="1">
+					<h:column>
+						<f:facet name="header">Naziv</f:facet>
+						#{pregledJelovnika.getNaziv(jelo.id())}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Količina</f:facet>
+						#{jelo.kolicina()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cijena</f:facet>
+						#{jelo.cijena()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Iznos</f:facet>
+						#{jelo.kolicina() * jelo.cijena()}
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+
+			<h:panelGroup>
+				<h3>Naručena pića</h3>
+				<h:dataTable value="#{pracenjeNarudzbi.narucenaPica}" var="pice"
+					border="1">
+					<h:column>
+						<f:facet name="header">Naziv</f:facet>
+						#{pregledKartePica.getNaziv(pice.id())}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Količina</f:facet>
+						#{pice.kolicina()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cijena</f:facet>
+						#{pice.cijena()}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Iznos</f:facet>
+						#{pice.kolicina() * pice.cijena()}
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+		</h:panelGrid>
+
+		<h:outputText value="#{pracenjeNarudzbi.statusPoruka}"
+			style="display:block; margin-top:10px;" />
+
+	</ui:define>
+</ui:composition>

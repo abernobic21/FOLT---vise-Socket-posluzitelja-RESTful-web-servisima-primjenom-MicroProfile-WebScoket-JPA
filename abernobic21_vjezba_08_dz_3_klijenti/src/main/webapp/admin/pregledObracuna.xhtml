@@ -1,0 +1,71 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Pregled obračuna</ui:define>
+
+	<ui:define name="content">
+		<h2>Pregled obračuna po partneru i razdoblju</h2>
+
+		<h:form id="obracunForma">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="partner" value="Partner:" />
+				<p:selectOneMenu id="partner"
+					value="#{pregledObracuna.odabraniPartner}" filter="true"
+					filterMatchMode="contains" panelStyle="width:250px">
+					<f:selectItems value="#{pregledObracuna.partneri}" var="p"
+						itemValue="#{p.id()}" itemLabel="#{p.naziv()}" />
+					<p:column>
+						<h:outputText value="#{p.naziv()}" />
+					</p:column>
+				</p:selectOneMenu>
+
+				<h:outputLabel for="vrijemeOd" value="Vrijeme od" />
+				<p:datePicker id="vrijemeOd" value="#{pregledObracuna.vrijemeOd}"
+					pattern="dd.MM.yyyy HH:mm:ss" showTime="true" hourFormat="24"
+					showIcon="true" />
+
+				<h:outputLabel for="vrijemeDo" value="Vrijeme do" />
+				<p:datePicker id="vrijemeDo" value="#{pregledObracuna.vrijemeDo}"
+					pattern="dd.MM.yyyy HH:mm:ss" showTime="true" hourFormat="24"
+					showIcon="true" />
+
+				<h:outputText value="" />
+				<p:commandButton value="Prikaži obračune"
+					action="#{pregledObracuna.dohvatiObracune}" icon="pi pi-search"
+					update=":obracunForma:dataTable" />
+
+			</h:panelGrid>
+
+			<h:messages globalOnly="true" style="color:red;" />
+
+			<br />
+
+			<p:dataTable id="dataTable" value="#{pregledObracuna.obracuni}"
+				var="o" responsiveLayout="scroll"
+				emptyMessage="Nema obračuna za odabrani kriterij">
+				<p:column headerText="ID">
+      #{o.id()}
+    </p:column>
+				<p:column headerText="Jelo">
+      #{o.jelo() ? 'Da' : 'Ne'}
+    </p:column>
+				<p:column headerText="Količina">
+      #{o.kolicina()}
+    </p:column>
+				<p:column headerText="Cijena">
+      #{o.cijena()}
+    </p:column>
+				<p:column headerText="Vrijeme">
+					<h:outputText value="#{o.vrijeme()}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" type="both" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="nav" />
+</ui:composition>

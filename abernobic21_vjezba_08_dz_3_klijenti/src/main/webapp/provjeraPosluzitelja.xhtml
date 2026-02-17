@@ -1,0 +1,22 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Provjera poslužitelja</ui:define>
+
+	<ui:define name="content">
+		<h2>Provjera poslužitelja</h2>
+		<br />
+		<h:form>
+			<f:event type="preRenderView"
+				listener="#{provjeraPosluzitelja.provjeri}" />
+
+			<h:outputText value="#{provjeraPosluzitelja.statusPoruka}"
+				style="display:block; margin-top:10px;" />
+
+			<h:commandButton value="Provjeri poslužitelj"
+				action="#{provjeraPosluzitelja.provjeri}" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

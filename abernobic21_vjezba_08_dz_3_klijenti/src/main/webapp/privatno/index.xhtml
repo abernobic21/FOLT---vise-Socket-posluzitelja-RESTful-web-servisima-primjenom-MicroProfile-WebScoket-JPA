@@ -1,0 +1,42 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Zadaća 3 - Početak Partner</ui:define>
+	<ui:define name="content">
+		<ul>
+			<ui:fragment
+				rendered="#{(!pracenjeNarudzbi.aktivnaNarudzba)}">
+				<li><h:link outcome="/privatno/odabirPartnera.xhtml"
+						value="Odabir partnera" /></li>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{prijavaKorisnika.partnerOdabran}">
+				<li><h:link outcome="/privatno/pregledJelovnika.xhtml"
+						value="Pregled jelovnika" /></li>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{prijavaKorisnika.partnerOdabran}">
+				<li><h:link outcome="/privatno/pregledKartePica.xhtml"
+						value="Pregled karte pića" /></li>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{(!pracenjeNarudzbi.aktivnaNarudzba)}">
+				<li><h:link outcome="/privatno/novaNarudzba.xhtml"
+						value="Nova narudžba" /></li>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{pracenjeNarudzbi.aktivnaNarudzba}">
+				<li><h:link outcome="/privatno/dopunaNarudzbe.xhtml"
+						value="Dopuna narudžbe" /></li>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{pracenjeNarudzbi.aktivnaNarudzba}">
+				<li><h:link outcome="/privatno/placanjeNarudzbe.xhtml"
+						value="Plaćanje narudžbe" /></li>
+			</ui:fragment>
+		</ul>
+	</ui:define>
+	<ui:define name="nav">
+	</ui:define>
+</ui:composition>

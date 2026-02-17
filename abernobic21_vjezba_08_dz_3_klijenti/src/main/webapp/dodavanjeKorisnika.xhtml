@@ -1,0 +1,53 @@
+<ui:composition template="/predlozak.xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core">
+
+	<ui:define name="title">Dodavanje korisnika</ui:define>
+
+	<ui:define name="content">
+		<h2>Dodavanje korisnika</h2>
+		<br />
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="korisnik" value="Korisničko ime:" />
+				<h:inputText id="korisnik"
+					value="#{dodavanjeKorisnika.korisnickoIme}" required="true"
+					requiredMessage="Korisničko ime je obavezno." />
+
+
+				<h:outputLabel for="lozinka" value="Lozinka:" />
+				<h:inputSecret id="lozinka" value="#{dodavanjeKorisnika.lozinka}"
+					required="true" requiredMessage="Lozinka je obavezna." />
+
+				<h:outputLabel for="ime" value="Ime:" />
+				<h:inputText id="ime" value="#{dodavanjeKorisnika.ime}"
+					required="true" requiredMessage="Ime je obavezno." />
+
+				<h:outputLabel for="prezime" value="Prezime:" />
+				<h:inputText id="prezime" value="#{dodavanjeKorisnika.prezime}"
+					required="true" requiredMessage="Prezime je obavezno." />
+
+				<h:outputLabel for="email" value="Email:" />
+				<h:inputText id="email" value="#{dodavanjeKorisnika.email}"
+					required="true" requiredMessage="Email je obavezan."
+					validatorMessage="Unesite ispravan email.">
+					<f:validateRegex pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+				</h:inputText>
+
+				<h:message for="korisnik" style="color:red;" />
+				<h:message for="lozinka" style="color:red;" />
+				<h:message for="ime" style="color:red;" />
+				<h:message for="prezime" style="color:red;" />
+				<h:message for="email" style="color:red;" />
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="Dodaj korisnika"
+				action="#{dodavanjeKorisnika.dodajKorisnika}" />
+
+			<h:outputText value="#{dodavanjeKorisnika.statusPoruka}"
+				style="display:block; margin-top:10px;" />
+		</h:form>
+	</ui:define>
+</ui:composition>
